@@ -1,0 +1,268 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>On Par</title><style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#153a43;background:#f0f6f7;font-size:15px}*{box-sizing:border-box}body{margin:0}main{max-width:940px;margin:auto;padding:22px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:8px 0}h1{font-size:25px;margin:0}h2{font-size:20px;margin:4px 0 8px}h3{font-size:16px;margin:0 0 8px}small,.muted{color:#657e83}small{font-size:12px}.panel,article{background:white;border:1px solid #d8e5e7;border-radius:14px;padding:16px;margin:10px 0;box-shadow:0 1px 1px #d7e5e744}button,input,select{font:inherit;border-radius:9px;padding:10px;border:1px solid #b9ced2}button{background:#087e93;color:white;border:none;font-weight:650;cursor:pointer}button.ghost{background:#e1eff1;color:#245762}button:disabled{opacity:.45;cursor:not-allowed}input,select{width:100%;background:white}label{font-weight:650;font-size:13px}form{display:grid;gap:10px}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row .grow{flex:1}.row input{width:108px}nav{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}nav button{padding:10px 12px}.tag{display:inline-flex;background:#e6f3ef;color:#246950;border-radius:20px;padding:4px 9px;font-size:12px;font-weight:600}.warn{background:#fff2dc;color:#916200}.bad{background:#f9e6e4;color:#a33831}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stats .panel{margin:0;padding:13px}.stats b{display:block;font-size:25px}.line{border-top:1px solid #e4eded;padding-top:10px;margin-top:10px}.err{color:#b12424}#msg{min-height:24px;margin:8px 0}#login{max-width:410px;margin:60px auto}.task{display:flex;gap:10px;justify-content:space-between;align-items:center}.task strong{display:block}.task p{margin:4px 0;color:#61777b}.help{background:#e6f4f4;border-radius:12px;padding:13px;color:#245762}.two{display:grid;grid-template-columns:1fr 1fr;gap:15px} .buy{color:#a75d00;font-weight:750}.ok{color:#1b7553;font-weight:650}.status-buttons{display:flex;gap:8px;margin-top:10px}.status-buttons button{flex:1;min-width:0;padding:12px 6px;background:#edf4f5;color:#34545b;border:2px solid transparent}.status-buttons button.good.active{background:#dcf7e9;color:#136c48;border-color:#238760}.status-buttons button.low.active{background:#fff0ce;color:#7a5100;border-color:#e1a02c}.status-buttons button.out.active{background:#fce2df;color:#a32929;border-color:#ce4c45}.optional-qty{margin-top:12px}.optional-qty label{display:block;color:#4c686d}.qty-controls{display:flex;gap:8px;align-items:center;margin-top:5px}.qty-controls input{width:145px;max-width:55%;min-width:90px}.qty-controls button{padding:10px 12px}.status-buttons button:focus-visible{outline:3px solid #146e83;outline-offset:2px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px} @media(max-width:600px){main{padding:12px}.two{grid-template-columns:1fr}.stats{gap:5px}.stats .panel{padding:9px}.stats b{font-size:20px}article,.panel{padding:13px}header h1{font-size:22px}} 
+/* Explicit light form-control colors (including Safari/macOS dark appearance). */
+:root { color-scheme: light; }
+input:not([type="checkbox"]), textarea, select {
+  color: #153a43 !important;
+  -webkit-text-fill-color: #153a43 !important;
+  caret-color: #153a43;
+  background-color: #ffffff !important;
+  opacity: 1;
+}
+input::placeholder, textarea::placeholder {
+  color: #617b80 !important;
+  -webkit-text-fill-color: #617b80 !important;
+  opacity: 1;
+}
+select option { color: #153a43; background-color: #ffffff; }
+input:focus-visible,textarea:focus-visible,select:focus-visible { outline: 2px solid #087e93; outline-offset: 1px; }
+
+/* Smart Prep v0.14: calm coastal refresh. Existing layout and interactions retained. */
+:root{
+  --ink:#203d45;--muted:#647b81;--navy:#164b58;--teal:#117e8b;
+  --sky:#dceff1;--cream:#f8f7f2;--stroke:#dae7e5;--white:#fff;
+  --shadow:0 10px 30px rgba(34,73,80,.055);
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);background:var(--cream);font-size:15px;
+  color-scheme:light;
+}
+html{background:var(--cream)}
+body{background:linear-gradient(155deg,#e7f3f2 0,#f8f7f2 220px,#f8f7f2 100%);min-height:100vh}
+main{max-width:1040px;padding:26px 24px 60px}
+header{background:var(--navy);color:#fff;padding:22px 26px;border-radius:20px;
+  box-shadow:0 10px 25px rgba(18,62,70,.13);margin-bottom:14px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;width:170px;height:170px;border:26px solid rgba(255,255,255,.055);border-radius:50%;right:90px;top:-105px;pointer-events:none}
+header h1{font-size:26px;letter-spacing:-.8px;font-weight:780}
+header small{color:#c7e7e9;font-size:12px;letter-spacing:.3px}
+h2{font-size:22px;font-weight:750;letter-spacing:-.5px;margin:7px 0 12px;color:#203c45}
+h3{font-size:16px;font-weight:740;letter-spacing:-.15px;margin:8px 0 10px}
+p{line-height:1.55}
+small,.muted{color:var(--muted)}
+.panel,article{background:rgba(255,255,255,.98);border:1px solid var(--stroke);border-radius:17px;
+  padding:20px;margin:12px 0;box-shadow:var(--shadow)}
+.panel .panel,article article{box-shadow:none}
+button,input,select{font:inherit;border-radius:11px;padding:11px 12px;border:1px solid #cbdcdb}
+button{border:1px solid transparent;background:var(--teal);color:white;font-weight:700;
+  box-shadow:0 2px 5px rgba(11,80,90,.08);transition:background .14s ease,transform .14s ease,box-shadow .14s ease}
+button:hover:not(:disabled){background:#0d6e7b;box-shadow:0 4px 12px rgba(11,80,90,.13)}
+button:active:not(:disabled){transform:translateY(1px)}
+button.ghost{background:#e5f1f0;color:#235966;border:1px solid #d1e5e4;box-shadow:none}
+button.ghost:hover:not(:disabled){background:#d7eae9}
+header button.ghost{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.25);color:white}
+header button.ghost:hover:not(:disabled){background:rgba(255,255,255,.22)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #67b2bf;outline-offset:2px}
+nav{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:20px 0 18px;
+  background:rgba(255,255,255,.85);padding:8px;border:1px solid var(--stroke);border-radius:16px}
+nav button{padding:11px 15px;border-radius:10px;font-size:14px;white-space:nowrap;box-shadow:none}
+nav button:not(.ghost){background:var(--navy);color:white}
+nav button.ghost{background:transparent;color:#4e6d75;border-color:transparent}
+nav button.ghost:hover{background:#e9f3f2}
+nav button#refresh{margin-left:auto;background:#e8f2f1;border:1px solid #d5e7e5}
+.tag{background:#e1f0ee;color:#27695d;border-radius:999px;padding:6px 11px;font-weight:740}
+.tag.warn,.warn{background:#fff2d9;color:#895900}.tag.bad,.bad{background:#fbe7e5;color:#a33b34}
+.help{background:#edf7f5;border:1px solid #dceeea;color:#386671;border-radius:13px;padding:16px;line-height:1.7}
+.stats{gap:12px}.stats .panel{padding:19px 18px;background:linear-gradient(180deg,#fff 0%,#f5fbfa 100%)}
+.stats b{font-size:30px;color:var(--navy);font-weight:800;letter-spacing:-1px;margin-bottom:7px}
+.stats small{font-size:12px;font-weight:650}
+.line{border-top-color:#e5eded;padding-top:14px;margin-top:14px}
+.task p{color:var(--muted)}
+.status-buttons{gap:9px;margin-top:12px}
+.status-buttons button{background:#f1f6f5;color:#58757c;border:1px solid #e0eae9;border-radius:10px;
+  padding:13px 10px;box-shadow:none}
+.status-buttons button:hover:not(:disabled){background:#e7f1f0}
+.status-buttons button.good.active{background:#dff3e9;color:#166546;border-color:#62aa8b}
+.status-buttons button.low.active{background:#fff0d2;color:#82570b;border-color:#dbaf56}
+.status-buttons button.out.active{background:#fbe4e1;color:#a53737;border-color:#dc8a84}
+.optional-qty{border-top:1px dashed #e2eae8;padding-top:10px}
+.optional-qty label{color:#617c81}
+input:not([type="checkbox"]),textarea,select{color:#203d45!important;-webkit-text-fill-color:#203d45!important;caret-color:#117e8b;
+  background:#fff!important;border:1px solid #bed1d1;box-shadow:inset 0 1px 2px rgba(31,66,74,.025)}
+input::placeholder,textarea::placeholder{color:#7a8d91!important;-webkit-text-fill-color:#7a8d91!important;opacity:1}
+input[type="checkbox"]{accent-color:#117e8b}
+label{color:#31535c;font-size:13px;font-weight:700}
+#msg{font-weight:650}
+#login{margin:45px auto;padding:27px}
+section.panel:has(#add-managed){border-color:#c9e1e0}
+@media(max-width:700px){main{padding:14px 12px 38px}header{padding:20px 18px;border-radius:16px}header h1{font-size:24px}
+  nav{gap:5px;padding:6px;overflow:visible}nav button{font-size:12px;padding:10px 9px}
+  nav button#refresh{margin-left:0}.stats{gap:7px}.stats .panel{padding:13px 9px}.stats b{font-size:23px}
+  article,.panel{padding:15px;border-radius:14px}.two{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){button{transition:none}}
+
+
+/* Smart Prep v0.16: Powder Blue / Cream / Iron Ore / White. Palette-only override. */
+:root{--ink:#363B3E;--muted:#626B72;--navy:#43484C;--teal:#547F98;--sky:#E7F3FA;--cream:#FBF9F3;--stroke:#DBE5E9;--white:#FFFFFF;--shadow:0 10px 30px rgba(58,70,78,.065);color:var(--ink);background:var(--cream);color-scheme:light}
+html{background:var(--cream)}
+body{background:linear-gradient(155deg,#E7F3FA 0%,#F5FAFC 210px,#FBF9F3 510px,#FBF9F3 100%)}
+header{background:#43484C;color:#FFFFFF;box-shadow:0 10px 25px rgba(43,49,53,.15)}
+header small{color:#D7E8F1}
+h2,h3{color:#373D41}
+.panel,article{border-color:#DFE7E9;background:#FFFFFF}
+button{background:#547F98;color:#FFFFFF;box-shadow:0 2px 5px rgba(61,92,109,.09)}
+button:hover:not(:disabled){background:#436E88;box-shadow:0 4px 12px rgba(61,92,109,.15)}
+button.ghost{background:#EAF4FA;color:#3F606F;border-color:#D4E5EF}
+button.ghost:hover:not(:disabled){background:#DCEEF8}
+header button.ghost{background:rgba(255,255,255,.13);color:#FFFFFF;border-color:rgba(255,255,255,.25)}
+header button.ghost:hover:not(:disabled){background:rgba(255,255,255,.22)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#6A9EB8}
+nav{background:rgba(255,255,255,.9);border-color:#DFE7E9}
+nav button:not(.ghost){background:#43484C;color:#FFFFFF}
+nav button.ghost{background:transparent;color:#59666B;border-color:transparent}
+nav button.ghost:hover{background:#EAF4FA}
+nav button#refresh{background:#EAF4FA;border-color:#D4E5EF}
+.tag{background:#E5F1F7;color:#415D6D}
+.tag.warn,.warn{background:#FFF0D7;color:#79520F}
+.tag.bad,.bad{background:#FBE6E3;color:#973F38}
+.help{background:#EFF7FB;border-color:#DBEAF1;color:#465D69}
+.stats .panel{background:linear-gradient(180deg,#FFFFFF 0%,#F3F9FC 100%)}
+.stats b{color:#43484C}
+.line{border-top-color:#E4EBED}
+.status-buttons button{background:#F1F5F7;color:#57666C;border-color:#E1E8EB}
+.status-buttons button:hover:not(:disabled){background:#EAF1F5}
+.status-buttons button.good.active{background:#E2F3E9;color:#206044;border-color:#80B99B}
+.status-buttons button.low.active{background:#FFF1D8;color:#81530E;border-color:#E0BA75}
+.status-buttons button.out.active{background:#FAE5E2;color:#A13B36;border-color:#DB9B94}
+.optional-qty{border-top-color:#E2EAEE}
+.optional-qty label{color:#606E74}
+input:not([type="checkbox"]),textarea,select{color:#373D41!important;-webkit-text-fill-color:#373D41!important;caret-color:#547F98;background:#FFFFFF!important;border-color:#C7D6DC;box-shadow:inset 0 1px 2px rgba(52,64,69,.03)}
+input::placeholder,textarea::placeholder{color:#7D8B92!important;-webkit-text-fill-color:#7D8B92!important}
+input[type="checkbox"]{accent-color:#547F98}
+label{color:#424D53}
+section.panel:has(#add-managed){border-color:#D1E1E9}
+.buy{color:#986112}.ok{color:#236648}
+
+
+/* v0.17 Skyfall: bright blue-first visual system; style-only overlay. */
+:root{--ink:#16344B;--muted:#54758B;--navy:#168BCB;--teal:#008ACB;--sky:#89C6DF;--cream:#FFFDF8;--stroke:#B6E2F5;--white:#FFFFFF;--shadow:0 10px 28px rgba(0,111,177,.105);color:var(--ink);background:#E2F5FF;color-scheme:light}
+html{background:#DDF2FF}
+body{background:linear-gradient(155deg,#B7E7FC 0%,#DCF4FF 260px,#F1FAFF 560px,#FFFDF8 100%);min-height:100vh}
+header{background:linear-gradient(125deg,#0878B9 0%,#0D9EDE 58%,#48C2EF 100%);color:#FFFFFF;box-shadow:0 14px 34px rgba(0,116,184,.23);border:1px solid rgba(255,255,255,.28)}
+header::after{border-color:rgba(255,255,255,.16)}
+header h1{color:#FFFFFF;text-shadow:0 1px 2px rgba(0,71,126,.12)}
+header small{color:#E9F9FF}
+h2,h3{color:#173F5A}
+.panel,article{background:#FFFFFF;border-color:#C5EAF8;box-shadow:0 7px 22px rgba(23,122,180,.085)}
+button{background:#058BCF;color:#FFFFFF;border-color:#058BCF;box-shadow:0 4px 10px rgba(5,139,207,.15)}
+button:hover:not(:disabled){background:#0679BC;box-shadow:0 6px 14px rgba(5,139,207,.22)}
+button.ghost{background:#DDF2FF;color:#0769A1;border-color:#ABDAF3;box-shadow:none}
+button.ghost:hover:not(:disabled){background:#C6EAFE}
+header button.ghost{background:rgba(255,255,255,.18);color:#FFFFFF;border-color:rgba(255,255,255,.43)}
+header button.ghost:hover:not(:disabled){background:rgba(255,255,255,.27)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:#0369A9}
+nav{background:#F8FDFF;border-color:#B8E5F7;box-shadow:0 3px 12px rgba(0,123,190,.07)}
+nav button:not(.ghost){background:#078CCF;color:#FFFFFF;border-color:#078CCF;box-shadow:0 3px 8px rgba(0,137,210,.2)}
+nav button.ghost{background:transparent;color:#28627E;border-color:transparent;box-shadow:none}
+nav button.ghost:hover{background:#DBF3FF}
+nav button#refresh{background:#E1F5FF;border-color:#AFDFF4;color:#116F9F;box-shadow:none}
+.tag{background:#DDF3FF;color:#066796}
+.tag.warn,.warn{background:#FFF2D8;color:#895A0D}
+.tag.bad,.bad{background:#FDE5E2;color:#9A342F}
+.help{background:#D8F1FF;border:1px solid #A8DAF1;color:#174D6C}
+.stats .panel{background:linear-gradient(175deg,#FFFFFF 0%,#E6F7FF 100%)}
+.stats b{color:#087EB8}
+.line{border-top-color:#D7EBF4}
+.status-buttons button{background:#E8F6FD;color:#37667E;border-color:#C6E3F0;box-shadow:none}
+.status-buttons button:hover:not(:disabled){background:#D7F0FE}
+.status-buttons button.good.active{background:#DDF5E9;color:#166546;border-color:#70BB97}
+.status-buttons button.low.active{background:#FFF0D0;color:#83520A;border-color:#DDB060}
+.status-buttons button.out.active{background:#FCE3E0;color:#A53737;border-color:#DC8A84}
+.optional-qty{border-top-color:#CFE8F6}
+.optional-qty label{color:#356580}
+input:not([type="checkbox"]),textarea,select{color:#17384D!important;-webkit-text-fill-color:#17384D!important;caret-color:#0088CD;background:#FFFFFF!important;border-color:#A6D5EE;box-shadow:inset 0 1px 2px rgba(0,91,156,.035)}
+input::placeholder,textarea::placeholder{color:#618197!important;-webkit-text-fill-color:#618197!important}
+input[type="checkbox"]{accent-color:#078CCF}
+label{color:#24516A}
+section.panel:has(#add-managed){border-color:#B7E2F7}
+.buy{color:#9B6211}.ok{color:#186E4B}
+
+</style></head><body><main><div class="help" style="margin:0 0 14px"><b>Offline interactive preview</b> · Demo only. Changes save in this browser, not on your team’s hosted app.<div class="row" style="margin-top:9px"><button class="ghost" onclick="__previewNextDay()">Simulate next day</button><button class="ghost" onclick="__previewReset()">Reset preview</button></div></div><header><div><h1>On Par</h1><small>On Par · Kitchen operations</small></div><button id="logout" class="ghost" hidden>Sign out</button></header><div id="msg" role="status"></div><div id="root"></div></main><script>
+
+(function(){
+const today=new Date().toLocaleDateString('en-CA',{timeZone:'America/New_York'});
+const d=new Date(today+'T12:00:00');const yesterday=new Date(d.getTime()-86400000).toISOString().slice(0,10);
+const products=[["Bananas", "Produce & Fruit"], ["Pineapple", "Produce & Fruit"], ["Watermelon", "Produce & Fruit"], ["Strawberries", "Produce & Fruit"], ["Blueberries", "Produce & Fruit"], ["Kiwi", "Produce & Fruit"], ["Cucumbers", "Produce & Fruit"], ["Tomatoes", "Produce & Fruit"], ["Jalapeños", "Produce & Fruit"], ["Kale", "Produce & Fruit"], ["Lettuce", "Produce & Fruit"], ["Spinach", "Produce & Fruit"], ["Avocados", "Produce & Fruit"], ["Green Onions", "Produce & Fruit"], ["Red Onions", "Produce & Fruit"], ["Sweet Onions", "Produce & Fruit"], ["Tofu", "Proteins & Dairy"], ["Cheese", "Proteins & Dairy"], ["Feta", "Proteins & Dairy"], ["Almonds", "Dry Goods & Toppings"], ["Raisins", "Dry Goods & Toppings"], ["Coconut", "Dry Goods & Toppings"], ["Chia Seeds", "Dry Goods & Toppings"], ["Peanut Butter", "Dry Goods & Toppings"], ["Nutella", "Dry Goods & Toppings"], ["Honey", "Dry Goods & Toppings"], ["Seaweed", "Dry Goods & Toppings"], ["Crabsticks", "Proteins & Dairy"], ["Shrimp", "Proteins & Dairy"], ["Whole Milk", "Milk & Beverages"], ["Almond Milk", "Milk & Beverages"], ["Vanilla Almond", "Milk & Beverages"], ["Oat Milk", "Milk & Beverages"], ["Soy Milk", "Milk & Beverages"], ["OJ", "Milk & Beverages"], ["Apple Juice", "Milk & Beverages"], ["Coconut Water", "Milk & Beverages"]];
+const prepared=[["Tuna", "qt", 12, 6.0], ["Spicy Tuna Salad", "qt", 8, 8], ["Regular Tuna Salad", "qt", 8, 6.0], ["Poke Cucumbers", "qt", 12, 6.0], ["Jule Cucumbers", "qt", 8, 8], ["Green Onions", "qt", 8, 6.0], ["Red Onions", "1/6 pans", 2, 1.0], ["Sweet Onions", "1/6 pans", 2, 2], ["Tomatoes", "1/6 pans", 2, 1.5], ["Pineapple", "1/6 pans", 6, 3.0], ["Kiwi", "1/6 pans", 2, 2], ["Strawberries", "1/6 pans", 4, 3.0], ["Jalapeños", "1/6 pans", 1, 0.5], ["Sriracha Mayo", "bottles", 4, 4], ["Tzeke", "bottles", 2, 1.5], ["Ponzu", "bottles", 1, 0.5], ["Scrambled Eggs", "bottles", 2, 2], ["Fajita Sauce", "bottles", 2, 1.5]];
+const initial={inactive_stock:[],inactive_prepared:[],manual:[],day:today,source_day:yesterday,user:{id:1,name:'Demo Manager',role:'manager'},stock:products.map((r,i)=>({id:i+1,name:r[0],unit:'item',category:r[1],target:null,qty:null,needed:null,status:null,at:null,counted_by:null,active:1})),prepared:prepared.map((r,i)=>({id:i+1,name:r[0],unit:r[1],par:r[2],closing_qty:r[3],closing_target:r[2],closing_at:new Date().toISOString(),closing_by:'Closing Staff',prepared_qty:null,prepared_at:null,prepared_by:null})),closing:[],audit:[]};
+let stored;try{stored=JSON.parse(localStorage.getItem('smartprep_v12_preview'))}catch(e){};let data=stored&&stored.version===2?stored.data:initial;
+function save(){try{localStorage.setItem('smartprep_v12_preview',JSON.stringify({version:2,data}))}catch(e){}}
+window.fetch=async function(url,options={}){
+if(!String(url).startsWith('/api/'))return new Response('Not found',{status:404});const route=String(url).slice(5);let body={};if(options.body){try{body=JSON.parse(options.body)}catch(e){}};const itemId=Number(body.id),now=new Date().toISOString(),item=data.prepared.find(x=>x.id===itemId),product=data.stock.find(x=>x.id===itemId);
+let response={ok:true},status=200;
+switch(route){
+case 'state':response=data;break;
+case 'logout':break;
+case 'morning':if(!product)break;product.status=body.status;product.qty=(body.qty===null||body.qty===undefined||body.qty==='')?null:Number(body.qty);product.needed=null;product.at=now;product.counted_by='Demo Manager';data.audit.unshift({action:'Morning stock check',name:'Demo Manager',at:now,detail:product.name+' '+body.status.toUpperCase()+(product.qty===null?' (quantity not entered)':' ('+product.qty+' on hand)')});break;
+case 'closing':if(!item)break;let old=data.closing.find(x=>x.item_id===itemId);if(!old){old={item_id:itemId};data.closing.push(old)};Object.assign(old,{qty:Number(body.qty),target:item.par,counted_by:'Demo Manager',at:now});data.audit.unshift({action:'Closing prepared count',name:'Demo Manager',at:now,detail:item.name+' '+body.qty+' '+item.unit});break;
+case 'prep-done':if(!item)break;item.prepared_qty=Number(body.actual);item.prepared_at=now;item.prepared_by='Demo Manager';data.audit.unshift({action:'Prep completed',name:'Demo Manager',at:now,detail:item.name+' '+body.actual+' '+item.unit});break;
+case 'manage-item':{
+const section=body.section,arr=section==='morning'?data.stock:data.prepared,inactive=section==='morning'?data.inactive_stock:data.inactive_prepared;
+const match=arr.find(x=>x.name.toLowerCase()===String(body.name||'').toLowerCase());
+if(body.action==='create'){
+ if(match){response={error:'Item already exists'};status=400;break;}
+ let prior=inactive.find(x=>x.name.toLowerCase()===String(body.name||'').toLowerCase());
+ if(prior){inactive.splice(inactive.indexOf(prior),1);arr.push(prior)}
+ else if(section==='morning')arr.push({id:Math.max(0,...arr.map(x=>x.id),...inactive.map(x=>x.id))+1,name:body.name,unit:body.unit,category:body.category,target:null,qty:null,needed:null,status:null,at:null,counted_by:null,active:1});
+ else arr.push({id:Math.max(0,...arr.map(x=>x.id),...inactive.map(x=>x.id))+1,name:body.name,unit:body.unit,par:Number(body.par),closing_qty:null,closing_target:null,closing_at:null,closing_by:null,prepared_at:null,prepared_qty:null,prepared_by:null,active:1});
+ if(prior){prior.unit=body.unit;if(section==='morning')prior.category=body.category;else prior.par=Number(body.par);}
+ }else{
+  let x=arr.find(x=>x.id===itemId)||inactive.find(x=>x.id===itemId);if(!x){response={error:'Item not found'};status=404;break;}
+  if(body.action==='update'){x.name=body.name;x.unit=body.unit;if(section==='morning')x.category=body.category;else x.par=Number(body.par);}
+  else if(body.action==='deactivate'){arr.splice(arr.indexOf(x),1);x.active=0;inactive.push(x)}
+  else if(body.action==='reactivate'){inactive.splice(inactive.indexOf(x),1);x.active=1;arr.push(x)}
+ }
+ data.audit.unshift({action:'Manager item change',name:'Demo Manager',at:now,detail:section+' '+body.action+' '+(body.name||itemId)});break;
+}
+case 'manual-task':data.manual.push({id:Math.max(0,...data.manual.map(x=>x.id))+1,name:body.name,unit:body.unit,qty:Number(body.qty),creator:'Demo Manager',done_at:null,completed_by:null});break;
+case 'manual-done':{let x=data.manual.find(x=>x.id===itemId);if(x){x.done_at=now;x.completed_by='Demo Manager'}break;}
+case 'prepared-item':if(item){item.par=Number(body.par)}else{data.prepared.push({id:Math.max(0,...data.prepared.map(x=>x.id))+1,name:body.name,unit:body.unit,par:Number(body.par),closing_qty:null,closing_target:null,prepared_at:null,prepared_qty:null,prepared_by:null})}break;
+case 'stock-item':if(product){product.category=body.category}else{data.stock.push({id:Math.max(0,...data.stock.map(x=>x.id))+1,name:body.name,unit:body.unit||'item',category:body.category,target:null,qty:null,needed:null,status:null,at:null,counted_by:null,active:1})}break;
+case 'user':data.audit.unshift({action:'Demo employee added',name:'Demo Manager',at:now,detail:body.name});break;
+default:response={error:'Unsupported preview action'};status=404;
+}
+if(route!=='state')save();return new Response(JSON.stringify(response),{status,headers:{'Content-Type':'application/json'}})
+};
+window.__previewNextDay=function(){
+const nextDate=new Date(data.day+'T12:00:00');nextDate.setDate(nextDate.getDate()+1);const next=nextDate.toISOString().slice(0,10);
+data.prepared.forEach(i=>{let c=data.closing.find(z=>z.item_id===i.id);i.closing_qty=c?.qty??null;i.closing_target=c?.target??null;i.prepared_at=null;i.prepared_qty=null;i.prepared_by=null});data.source_day=data.day;data.day=next;data.closing=[];data.stock.forEach(i=>{i.qty=null;i.needed=null;i.status=null;i.at=null;i.counted_by=null});data.audit=[];data.manual=[];save();location.reload()};
+window.__previewReset=function(){localStorage.removeItem('smartprep_v12_preview');location.reload()};
+})();
+
+</script><script>
+
+const root=document.querySelector('#root'),msg=document.querySelector('#msg'),logout=document.querySelector('#logout');let state=null,tab='Home';
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=x=>Number(x??0).toLocaleString(undefined,{maximumFractionDigits:2});const clock=x=>x?new Date(x).toLocaleTimeString([],{hour:'numeric',minute:'2-digit',timeZone:'America/New_York'}):'';
+const eligible=x=>x.closing_qty!==null&&x.closing_qty!==undefined&&x.closing_qty<x.closing_target;const due=x=>Math.max(0,x.closing_target-x.closing_qty);
+async function api(route,data){let r=await fetch('/api/'+route,data===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});let j=await r.json();if(!r.ok){if(r.status===401&&route!=='login'){state=null;login()}throw Error(j.error||'Request failed')}return j}
+function status(s,bad=false){msg.className=bad?'err':'';msg.textContent=s}async function load(){try{state=await api('state');render()}catch(e){if(!state)login();else status(e.message,true)}}async function save(route,data){try{status('Saving…');await api(route,data);await load();status('Saved successfully.')}catch(e){status(e.message,true)}}
+function login(){logout.hidden=true;root.innerHTML=`<section class="panel" id="login"><h2>Sign in</h2><p class="muted">Use your employee account.</p><form id="login-form"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input type="password" name="password" autocomplete="current-password" required></label><button>Sign in</button></form></section>`;document.querySelector('#login-form').onsubmit=async e=>{e.preventDefault();try{await api('login',Object.fromEntries(new FormData(e.target)));status('');await load()}catch(ex){status(ex.message,true)}}}
+function taskCard(x){return `<article><div class="task"><div><strong>${esc(x.name)}</strong><p>Yesterday: ${fmt(x.closing_qty)} ${esc(x.unit)} · Target: ${fmt(x.closing_target)} ${esc(x.unit)}</p></div><span class="tag ${x.prepared_at?'':'warn'}">${x.prepared_at?'Done':'Prep '+fmt(due(x))+' '+esc(x.unit)}</span></div>${x.prepared_at?`<p class="muted">${fmt(x.prepared_qty)} ${esc(x.unit)} completed by ${esc(x.prepared_by)} at ${clock(x.prepared_at)}</p>`:`<form class="row line" data-done="${x.id}"><label>Amount actually prepped (${esc(x.unit)})<input name="actual" type="number" min="0" step="any" value="${due(x)}" required></label><button>Mark completed</button></form>`}</article>`}
+function render(){const {user,day,source_day,prepared,stock,closing,audit}=state;logout.hidden=false;let tabs=['Home','Morning Stock','Prep List','Closing Count','Activity',...(user.role==='manager'?['Setup']:[])];if(!tabs.includes(tab))tab='Home';let tasks=prepared.filter(eligible),done=tasks.filter(x=>x.prepared_at),manual=state.manual||[],needBuy=stock.filter(x=>x.status==='low'||x.status==='out'),morning=stock.filter(x=>['good','low','out'].includes(x.status)),closed=closing.length;
+root.innerHTML=`<p class="muted">${esc(user.name)} · ${esc(user.role)} · ${esc(day)}</p><nav>${tabs.map(x=>`<button class="${tab===x?'':'ghost'}" data-tab="${x}">${x}</button>`).join('')}<button class="ghost" id="refresh">↻ Refresh</button></nav><div id="content"></div>`;
+root.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;render()});root.querySelector('#refresh').onclick=load;let c=root.querySelector('#content');
+if(tab==='Home'){c.innerHTML=`<div class="stats"><section class="panel"><b>${morning.length}/${stock.length}</b><small>Products checked</small></section><section class="panel"><b>${needBuy.length}</b><small>Shopping flags</small></section><section class="panel"><b>${done.length}/${tasks.length}</b><small>Prep completed</small></section></div><section class="panel"><h2>Today at On Par</h2><p class="help"><b>Morning:</b> Check products on hand and identify what needs to be bought.<br><b>During shift:</b> Complete prep tasks created by yesterday's closing count.<br><b>Closing:</b> Count prepared ingredients to create tomorrow's prep list.</p><h3>Products to get</h3>${needBuy.length?needBuy.map(x=>`<p>• ${esc(x.name)} — <b>${esc(x.status.toUpperCase())}</b></p>`).join(''):'<p class="muted">No purchases flagged yet. Check morning stock first.</p>'}<h3>Prep still to do</h3>${manual.filter(x=>!x.done_at).map(x=>`<p>• ${esc(x.name)} — <b>${fmt(x.qty)} ${esc(x.unit)}</b> (extra task)</p>`).join('')}${tasks.filter(x=>!x.prepared_at).length?tasks.filter(x=>!x.prepared_at).map(x=>`<p>• ${esc(x.name)} — <b>${fmt(due(x))} ${esc(x.unit)}</b></p>`).join(''):'<p class="muted">No pending tasks. Tomorrow’s tasks depend on today’s closing counts.</p>'}<h3>Closing count</h3><p>${closed} of ${prepared.length} prepared items recorded for today.</p></section>`}
+if(tab==='Morning Stock'){
+const cats=[...new Set(stock.map(x=>x.category))];
+c.innerHTML=`<h2>Morning Store Check</h2><p class="help">Check each product and choose <b>Good</b>, <b>Low</b>, or <b>Out</b>. Low and Out automatically appear on the shopping list. Optionally enter a number on hand. A blank quantity is fine; an unselected status stays <b>Not checked</b>.</p><div class="panel"><div class="section-title"><strong>Checked: ${morning.length} / ${stock.length}</strong><span class="tag ${morning.length===stock.length?'':'warn'}">${needBuy.length} shopping alerts</span></div>${morning.length!==stock.length?'<p class="muted">Complete the remaining items before finishing the morning check.</p>':'<p class="ok">All morning products reviewed.</p>'}</div>${cats.map(cat=>`<section><h3>${esc(cat)}</h3>${stock.filter(x=>x.category===cat).map(x=>`<article><div class="section-title"><strong>${esc(x.name)}</strong><span class="tag ${x.status==='out'?'bad':x.status==='low'?'warn':''}">${x.status?esc(x.status.toUpperCase()):'Not checked'}</span></div><div class="status-buttons" role="group" aria-label="${esc(x.name)} stock status">${[['good','Good'],['low','Low'],['out','Out']].map(([key,label])=>`<button type="button" class="${key} ${x.status===key?'active':''}" aria-pressed="${x.status===key}" data-morning-id="${x.id}" data-morning-status="${key}">${label}</button>`).join('')}</div><div class="optional-qty"><label for="morning-qty-${x.id}">Optional quantity on hand</label><div class="qty-controls"><input id="morning-qty-${x.id}" aria-label="${esc(x.name)} quantity on hand" type="number" min="0" step="any" inputmode="decimal" placeholder="Not counted" value="${x.qty??''}"><button type="button" class="ghost" data-save-morning-qty="${x.id}" ${x.status?'':'disabled'}>Save qty</button></div></div>${x.status?`<p class="muted">Checked by ${esc(x.counted_by)} at ${clock(x.at)}${x.qty!=null?' · '+fmt(x.qty)+' on hand':''}</p>`:''}</article>`).join('')}</section>`).join('')}<section class="panel"><h3>Shopping needs</h3>${needBuy.length?needBuy.map(x=>`<p>• ${esc(x.name)} — <strong>${esc(x.status.toUpperCase())}</strong></p>`).join(''):'<p class="muted">Nothing flagged Low or Out yet.</p>'}</section>`;
+const readOptionalQty=(id)=>{const input=c.querySelector('#morning-qty-'+id);const raw=input.value.trim();if(raw==='')return null;const n=Number(raw);if(!input.checkValidity()||!Number.isFinite(n)||n<0){input.reportValidity();throw Error('Enter a valid number or leave the quantity blank.')}return n};
+c.querySelectorAll('[data-morning-id]').forEach(b=>b.onclick=()=>{try{save('morning',{id:+b.dataset.morningId,status:b.dataset.morningStatus,qty:readOptionalQty(b.dataset.morningId)})}catch(e){status(e.message,true)}});
+c.querySelectorAll('[data-save-morning-qty]').forEach(b=>b.onclick=()=>{const id=+b.dataset.saveMorningQty;const item=stock.find(x=>x.id===id);if(!item?.status)return;try{save('morning',{id,status:item.status,qty:readOptionalQty(id)})}catch(e){status(e.message,true)}});
+}
+if(tab==='Prep List'){c.innerHTML=`<h2>Today's prep list</h2><p class="help">Automatic tasks come from yesterday’s closing counts (${esc(source_day)}). Managers can also add extra prep tasks for today.</p><h3>Automatic prep</h3>${tasks.length?tasks.map(taskCard).join(''):"<section class='panel'>No prep requirements generated from yesterday's closing count.</section>"}<h3>Additional prep tasks</h3>${manual.length?manual.map(x=>`<article><div class="task"><div><strong>${esc(x.name)}</strong><p>${fmt(x.qty)} ${esc(x.unit)} · Added by ${esc(x.creator)}</p></div><span class="tag ${x.done_at?'':'warn'}">${x.done_at?'Done':'To do'}</span></div>${x.done_at?`<p class="muted">Done by ${esc(x.completed_by)} at ${clock(x.done_at)}</p>`:`<button data-manual-done="${x.id}">Mark completed</button>`}</article>`).join(''):'<p class="muted">No extra tasks for today.</p>'}${user.role==='manager'?`<section class="panel"><h3>Add one-time prep task</h3><form id="extra-prep"><label>Task / ingredient<input name="name" required maxlength="120" placeholder="e.g. Extra mango for catering"></label><label>Amount<input name="qty" type="number" min="0" step="any" required></label><label>Unit<input name="unit" value="qt" required maxlength="24"></label><button>Add to today’s prep</button></form></section>`:''}<h3>Missing yesterday’s count</h3><p class="muted">${prepared.filter(x=>x.par!==null&&x.closing_qty===null).length} configured items need a previous-day closing count.</p>${prepared.filter(x=>x.par!==null&&x.closing_qty===null).map(x=>`<p class="muted">• ${esc(x.name)}</p>`).join('')}`;c.querySelectorAll('[data-done]').forEach(f=>f.onsubmit=e=>{e.preventDefault();save('prep-done',{id:+f.dataset.done,actual:f.elements.actual.valueAsNumber})});c.querySelectorAll('[data-manual-done]').forEach(b=>b.onclick=()=>save('manual-done',{id:+b.dataset.manualDone}));let extra=c.querySelector('#extra-prep');if(extra)extra.onsubmit=e=>{e.preventDefault();save('manual-task',{name:extra.elements.name.value,qty:extra.elements.qty.valueAsNumber,unit:extra.elements.unit.value})}}
+if(tab==='Closing Count'){c.innerHTML=`<h2>Closing prepared inventory</h2><p class="help">Count the amount of <b>already-prepped food left</b> at the end of the day. Anything below the target automatically becomes a task on <b>tomorrow's prep list</b>.</p>${prepared.map(x=>{let cl=closing.find(y=>y.item_id===x.id);return `<article><div class="section-title"><strong>${esc(x.name)}</strong><span class="tag">${x.par===null?'Target not set':'Target '+fmt(x.par)+' '+esc(x.unit)}</span></div>${cl?`<p class="muted">Counted by ${esc(cl.counted_by)} at ${clock(cl.at)} · Tomorrow: ${Math.max(0,cl.target-cl.qty)>0?`prep ${fmt(Math.max(0,cl.target-cl.qty))} ${esc(x.unit)}`:'nothing needed'}</p>`:''}<form class="row" data-closing="${x.id}"><label>Prepped on hand (${esc(x.unit)})<input name="qty" type="number" min="0" step="any" value="${cl?.qty??''}" ${x.par===null?'disabled':''} required></label><button ${x.par===null?'disabled':''}>Save closing count</button></form></article>`}).join('')}`;c.querySelectorAll('[data-closing]').forEach(f=>f.onsubmit=e=>{e.preventDefault();save('closing',{id:+f.dataset.closing,qty:f.elements.qty.valueAsNumber})})}
+if(tab==='Activity'){c.innerHTML=`<h2>Today's activity log</h2>${audit.length?audit.map(x=>`<article><b>${esc(x.action)}</b><p class="muted">${esc(x.name)} · ${clock(x.at)} · ${esc(x.detail)}</p></article>`).join(''):'<section class="panel">No activity yet today.</section>'}`}
+if(tab==='Setup'){
+const inactiveMorning=state.inactive_stock||[],inactiveClosing=state.inactive_prepared||[];
+const editor=(x,section)=>`<article><form class="edit-item" data-section="${section}" data-id="${x.id}"><div class="section-title"><strong>${esc(x.name)}</strong><span class="tag">${section==='morning'?'Morning stock':'Closing + auto prep'}</span></div><div class="two"><label>Name<input name="name" value="${esc(x.name)}" maxlength="120" required></label><label>Unit<input name="unit" value="${esc(x.unit)}" maxlength="24" required></label>${section==='morning'?`<label>Category<input name="category" value="${esc(x.category)}" maxlength="60" required></label>`:`<label>Target par<input name="par" type="number" min="0" step="any" value="${x.par??''}" required></label>`}</div><div class="row" style="margin-top:12px"><button>Save changes</button><button type="button" class="ghost" data-disable="${section}:${x.id}">Deactivate</button></div></form></article>`;
+c.innerHTML=`<h2>Manage items</h2><p class="help">Only managers can change the item lists. Add a product to Morning Stock, Closing Count, or both. Closing items automatically appear in tomorrow’s prep list whenever a closing count is below its target. Deactivating hides an item from new checklists without deleting its past records.</p><section class="panel"><h3>Add an item</h3><form id="add-managed"><label>Item name<input name="name" placeholder="e.g. Chorizo" maxlength="120" required></label><div class="two"><label><input type="checkbox" name="inMorning" checked style="width:auto"> Morning Stock (Good / Low / Out)</label><label><input type="checkbox" name="inClosing" style="width:auto"> Closing Count + automatic prep</label></div><div id="morning-fields"><label>Morning category<input name="category" value="Other" maxlength="60"></label><label>Morning unit<input name="morning_unit" value="item" maxlength="24"></label></div><div id="closing-fields" hidden><label>Closing unit<select name="closing_unit"><option value="qt">Quarts</option><option value="1/6 pans">1/6 pans</option><option value="bottles">Bottles</option><option value="lb">Pounds</option><option value="item">Items</option></select></label><label>Closing target par<input name="par" type="number" min="0" step="any" placeholder="Set target"></label></div><button>Add item to selected lists</button></form></section><h3>Morning Stock — ${stock.length} active items</h3>${stock.map(x=>editor(x,'morning')).join('')}<h3>Closing Count — ${prepared.length} active items</h3>${prepared.map(x=>editor(x,'closing')).join('')}<section class="panel"><h3>Inactive items</h3>${[...inactiveMorning.map(x=>({...x,section:'morning'})),...inactiveClosing.map(x=>({...x,section:'closing'}))].length?[...inactiveMorning.map(x=>({...x,section:'morning'})),...inactiveClosing.map(x=>({...x,section:'closing'}))].map(x=>`<div class="row line"><span class="grow">${esc(x.name)} · ${x.section==='morning'?'Morning':'Closing'}</span><button class="ghost" data-enable="${x.section}:${x.id}">Restore</button></div>`).join(''):'<p class="muted">No deactivated items.</p>'}</section><section class="panel"><h3>Create employee account</h3><form id="staff"><label>Full name<input name="name" required></label><label>Username<input name="username" required></label><label>Initial password (12+ characters)<input name="password" minlength="12" type="password" autocomplete="new-password" required></label><label>Role<select name="role"><option value="employee">Employee</option><option value="manager">Manager</option></select></label><button>Create account</button></form></section>`;
+const af=c.querySelector('#add-managed'),mf=c.querySelector('#morning-fields'),cf=c.querySelector('#closing-fields');function toggle(){mf.hidden=!af.elements.inMorning.checked;cf.hidden=!af.elements.inClosing.checked;}af.elements.inMorning.onchange=toggle;af.elements.inClosing.onchange=toggle;toggle();
+af.onsubmit=async e=>{e.preventDefault();const morn=af.elements.inMorning.checked,close=af.elements.inClosing.checked;if(!morn&&!close){status('Select at least one list.',true);return}if(close&&(af.elements.par.value===''||Number(af.elements.par.value)<0)){status('Enter a closing target.',true);return}const name=af.elements.name.value;try{if(morn)await api('manage-item',{action:'create',section:'morning',name,unit:af.elements.morning_unit.value,category:af.elements.category.value});if(close)await api('manage-item',{action:'create',section:'closing',name,unit:af.elements.closing_unit.value,par:af.elements.par.valueAsNumber});await load();status('Item added.')}catch(err){await load();status(err.message,true)}};
+c.querySelectorAll('.edit-item').forEach(f=>f.onsubmit=e=>{e.preventDefault();let d={action:'update',section:f.dataset.section,id:+f.dataset.id,name:f.elements.name.value,unit:f.elements.unit.value};if(f.dataset.section==='morning')d.category=f.elements.category.value;else d.par=f.elements.par.valueAsNumber;save('manage-item',d)});
+c.querySelectorAll('[data-disable]').forEach(b=>b.onclick=()=>{const [section,id]=b.dataset.disable.split(':');if(confirm('Deactivate this item? Past counts will be kept.'))save('manage-item',{action:'deactivate',section,id:+id})});
+c.querySelectorAll('[data-enable]').forEach(b=>b.onclick=()=>{const [section,id]=b.dataset.enable.split(':');save('manage-item',{action:'reactivate',section,id:+id})});let staff=c.querySelector('#staff');staff.onsubmit=e=>{e.preventDefault();save('user',Object.fromEntries(new FormData(staff)))};
+}
+
+}
+logout.onclick=async()=>{try{await api('logout',{});state=null;status('');login()}catch(e){status(e.message,true)}};load();
+
+</script></body></html>
